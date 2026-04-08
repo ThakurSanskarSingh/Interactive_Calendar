@@ -14,8 +14,8 @@ export const SEASONAL_IMAGES: SeasonalImage[] = [
   },
   {
     month: 2,
-    src: "https://images.unsplash.com/photo-1454311843079-994119d6904f?w=1200&q=80&auto=format&fit=crop",
-    alt: "Frozen leaf on a wire fence",
+    src: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80&auto=format&fit=crop",
+    alt: "Snow-covered mountain peaks under a starry winter night sky",
     credit: "Photo by Unsplash",
   },
   {
@@ -81,18 +81,12 @@ export const SEASONAL_IMAGES: SeasonalImage[] = [
 ];
 
 /**
- * Get the seasonal hero image config for a given month (1–12).
- * Falls back to January if month is out of range.
+ * Get the seasonal hero image config for a given month (1-12).
+ * Falls back to January's image if no match is found.
  */
-export function getSeasonalImage(month: number): SeasonalImage {
+export function getSeasonalImageForDate(date: Date): SeasonalImage {
+  const month = date.getMonth() + 1; // getMonth() is 0-indexed
   return (
     SEASONAL_IMAGES.find((img) => img.month === month) ?? SEASONAL_IMAGES[0]
   );
-}
-
-/**
- * Get the seasonal image src URL for a given Date object.
- */
-export function getSeasonalImageForDate(date: Date): SeasonalImage {
-  return getSeasonalImage(date.getMonth() + 1);
 }
