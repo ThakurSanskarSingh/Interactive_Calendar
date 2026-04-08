@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
+/* ============================================================
+   DESIGN TOKEN LAYER — CSS Custom Properties
+   These vars are the single source of truth.
+   JavaScript (useDominantColor hook) mutates --cal-primary etc.
+   at runtime for dynamic seasonal theming.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* Brand palette */
+    --cal-bg: #f7fafc;
+    --cal-surface: #ffffff;
+    --cal-soft: #cbdde9;
+    --cal-soft-muted: #e5eff5;
+    --cal-primary: #2872a1;
+    --cal-primary-hover: #1f5d84;
+    --cal-primary-soft: #d8eaf4;
+    --cal-border: #d7e3ea;
+    --cal-text: #183042;
+    --cal-text-muted: #5b7282;
+    --cal-range: #b8d7ea;
+
+    /* Note colors */
+    --cal-note-yellow: #fff2b8;
+    --cal-note-blue: #ddefff;
+    --cal-note-pink: #ffe3ec;
+
+    /* Typography */
+    --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+    --font-body: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
+
+/* ============================================================
+   TAILWIND v4 THEME — References CSS vars (inline resolution)
+   Using `inline` so runtime CSS var mutations propagate to
+   all utility classes automatically.
+   ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    /* Colors */
+    --color-cal-bg: var(--cal-bg);
+    --color-cal-surface: var(--cal-surface);
+    --color-cal-soft: var(--cal-soft);
+    --color-cal-soft-muted: var(--cal-soft-muted);
+    --color-cal-primary: var(--cal-primary);
+    --color-cal-primary-hover: var(--cal-primary-hover);
+    --color-cal-primary-soft: var(--cal-primary-soft);
+    --color-cal-border: var(--cal-border);
+    --color-cal-text: var(--cal-text);
+    --color-cal-text-muted: var(--cal-text-muted);
+    --color-cal-range: var(--cal-range);
+    --color-note-yellow: var(--cal-note-yellow);
+    --color-note-blue: var(--cal-note-blue);
+    --color-note-pink: var(--cal-note-pink);
+
+    /* Border radius — design system radii */
+    --radius-card: 24px;
+    --radius-button: 14px;
+    --radius-cell: 18px;
+    --radius-pill: 9999px;
+
+    /* Shadows */
+    --shadow-cal-sm: 0 2px 8px rgba(17, 24, 39, 0.04);
+    --shadow-cal-md: 0 8px 24px rgba(17, 24, 39, 0.08);
+    --shadow-cal-lg: 0 18px 40px rgba(17, 24, 39, 0.12);
+
+    /* Font families — populated by next/font variables */
+    --font-display: var(--font-display);
+    --font-body: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    min-height: 100%;
+    background-color: var(--cal-bg);
+    color: var(--cal-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* ============================================================
+   REDUCED MOTION — Respect user preference
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============================================================
+   SCROLLBAR — Minimal, on-brand
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--cal-border);
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cal-text-muted);
+}
+
+/* ============================================================
+   FOCUS STYLES — Accessible and on-brand
+   ============================================================ */
+
+:focus-visible {
+    outline: 2px solid var(--cal-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+
+.font-display {
+    font-family: var(--font-display);
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+/* Shimmer animation for loading skeletons */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
 }
