@@ -1,23 +1,28 @@
 import { SeasonalImage } from "@/types/calendar";
 
+/**
+ * Seasonal imagery for the wall calendar.
+ * Selected months updated with user-provided Unsplash choices.
+ * Note: URLs are converted from Unsplash photo pages to direct image source URLs.
+ */
 export const SEASONAL_IMAGES: SeasonalImage[] = [
   {
     month: 1,
-    src: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=1200&q=80&auto=format&fit=crop",
-    alt: "Snow-covered pine forest blanketed in winter silence",
-    credit: "Photo by Claudio Testa on Unsplash",
+    src: "https://images.unsplash.com/photo-1418985991508-e47386d96a71?w=1200&q=80&auto=format&fit=crop",
+    alt: "Snowy landscape with trees and bright sun",
+    credit: "Photo by Unsplash",
   },
   {
     month: 2,
-    src: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1200&q=80&auto=format&fit=crop",
-    alt: "Delicate frost patterns on a winter morning window",
+    src: "https://images.unsplash.com/photo-1454311843079-994119d6904f?w=1200&q=80&auto=format&fit=crop",
+    alt: "Frozen leaf on a wire fence",
     credit: "Photo by Unsplash",
   },
   {
     month: 3,
-    src: "https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?w=1200&q=80&auto=format&fit=crop",
-    alt: "Soft pink cherry blossom branches against a pale sky",
-    credit: "Photo by Boudewijn Huysmans on Unsplash",
+    src: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=1200&q=80&auto=format&fit=crop",
+    alt: "Green field with a blue sky",
+    credit: "Photo by Unsplash",
   },
   {
     month: 4,
@@ -27,8 +32,8 @@ export const SEASONAL_IMAGES: SeasonalImage[] = [
   },
   {
     month: 5,
-    src: "https://images.unsplash.com/photo-1490750967868-88df5691cc77?w=1200&q=80&auto=format&fit=crop",
-    alt: "Rolling lavender fields glowing in late spring light",
+    src: "https://images.unsplash.com/photo-1475113548554-5a36f1f523d6?w=1200&q=80&auto=format&fit=crop",
+    alt: "Sun shining through clouds in the sky",
     credit: "Photo by Unsplash",
   },
   {
@@ -45,14 +50,14 @@ export const SEASONAL_IMAGES: SeasonalImage[] = [
   },
   {
     month: 8,
-    src: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=80&auto=format&fit=crop",
-    alt: "Warm golden hour light washing over open countryside in August",
+    src: "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?w=1200&q=80&auto=format&fit=crop",
+    alt: "A plane flying in a cloudy sky",
     credit: "Photo by Unsplash",
   },
   {
     month: 9,
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80&auto=format&fit=crop",
-    alt: "Amber and crimson maple leaves drifting in early autumn",
+    src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80&auto=format&fit=crop",
+    alt: "Misty forest with autumn trees and evergreens",
     credit: "Photo by Unsplash",
   },
   {
@@ -69,9 +74,9 @@ export const SEASONAL_IMAGES: SeasonalImage[] = [
   },
   {
     month: 12,
-    src: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=1200&q=80&auto=format&fit=crop",
-    alt: "Snow-dusted pine boughs glowing with warm Christmas lights",
-    credit: "Photo by Jonathan Borba on Unsplash",
+    src: "https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=1200&q=80&auto=format&fit=crop",
+    alt: "Snow-covered mountain under blue sky during daytime",
+    credit: "Photo by Unsplash",
   },
 ];
 
@@ -80,7 +85,9 @@ export const SEASONAL_IMAGES: SeasonalImage[] = [
  * Falls back to January if month is out of range.
  */
 export function getSeasonalImage(month: number): SeasonalImage {
-  return SEASONAL_IMAGES.find((img) => img.month === month) ?? SEASONAL_IMAGES[0];
+  return (
+    SEASONAL_IMAGES.find((img) => img.month === month) ?? SEASONAL_IMAGES[0]
+  );
 }
 
 /**
